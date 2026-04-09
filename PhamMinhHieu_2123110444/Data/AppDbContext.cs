@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PhamMinhHieu_2123110444.Models;
 
 namespace PhamMinhHieu_2123110444.Data
@@ -12,5 +12,6 @@ namespace PhamMinhHieu_2123110444.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
