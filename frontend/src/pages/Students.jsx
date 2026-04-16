@@ -55,16 +55,18 @@ export default function Students() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
+      const payload = {
+        id: currentStudent.id,
+        studentCode: currentStudent.studentCode,
+        fullName: currentStudent.fullName,
+        birthday: currentStudent.birthday,
+        classId: parseInt(currentStudent.classId)
+      };
+
       if (currentStudent.id === 0) {
-        await api.post('/Students', {
-          ...currentStudent,
-          classId: parseInt(currentStudent.classId)
-        });
+        await api.post('/Students', payload);
       } else {
-        await api.put(`/Students/${currentStudent.id}`, {
-          ...currentStudent,
-          classId: parseInt(currentStudent.classId)
-        });
+        await api.put(`/Students/${currentStudent.id}`, payload);
       }
       setIsModalOpen(false);
       fetchData();

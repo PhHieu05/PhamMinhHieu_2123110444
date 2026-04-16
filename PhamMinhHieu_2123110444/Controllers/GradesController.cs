@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhamMinhHieu_2123110444.Data;
 using PhamMinhHieu_2123110444.Models;
@@ -56,6 +56,33 @@ namespace PhamMinhHieu_2123110444.Controllers
             return CreatedAtAction(nameof(GetGrade), new { id = grade.Id }, grade);
         }
 
+        // PUT: api/Grades/5 (Cập nhật điểm)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutGrade(int id, Grade grade)
+        {
+            if (id != grade.Id) return BadRequest();
+
+            // Kiểm tra điểm số hợp lệ từ 0 đến 10
+            if (grade.Mark < 0 || grade.Mark > 10)
+            {
+                return BadRequest(new { message = "Điểm số phải nằm trong khoảng từ 0 đến 10." });
+            }
+
+            _context.Entry(grade).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Grades.Any(e => e.Id == id)) return NotFound();
+                else throw;
+            }
+
+            return NoContent();
+        }
+
         // DELETE: api/Grades/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGrade(int id)
@@ -77,6 +104,16 @@ namespace PhamMinhHieu_2123110444.Controllers
 
             var average = grades.Average(g => g.Mark);
             return Ok(new { StudentId = studentId, AverageMark = Math.Round(average, 2) });
+        }
+
+        // GET: api/Grades/student/5
+        [HttpGet("student/{studentId}")]
+        public async Task<ActionResult<IEnumerable<Grade>>> GetStudentGrades(int studentId)
+        {
+            return await _context.Grades
+                .Include(g => g.Subject)
+                .Where(g => g.StudentId == studentId)
+                .ToListAsync();
         }
     }
 }

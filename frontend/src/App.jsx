@@ -7,6 +7,13 @@ import Classes from './pages/Classes';
 import Subjects from './pages/Subjects';
 import Grades from './pages/Grades';
 import Attendances from './pages/Attendances';
+import Schedules from './pages/Schedules';
+import AdminLeaveRequests from './pages/AdminLeaveRequests';
+
+// Student Pages
+import StudentSchedule from './pages/StudentSchedule';
+import StudentGrades from './pages/StudentGrades';
+import StudentLeave from './pages/StudentLeave';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -20,11 +27,14 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        
         <Route path="/" element={
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>
         } />
+        
+        {/* Admin Routes */}
         <Route path="/students" element={
           <ProtectedRoute>
             <Students />
@@ -50,6 +60,35 @@ function App() {
             <Attendances />
           </ProtectedRoute>
         } />
+        <Route path="/schedules" element={
+          <ProtectedRoute>
+            <Schedules />
+          </ProtectedRoute>
+        } />
+        <Route path="/leave-requests" element={
+          <ProtectedRoute>
+            <AdminLeaveRequests />
+          </ProtectedRoute>
+        } />
+
+        {/* Student Routes */}
+        <Route path="/schedule" element={
+          <ProtectedRoute>
+            <StudentSchedule />
+          </ProtectedRoute>
+        } />
+        <Route path="/my-grades" element={
+          <ProtectedRoute>
+            <StudentGrades />
+          </ProtectedRoute>
+        } />
+        <Route path="/leave-request" element={
+          <ProtectedRoute>
+            <StudentLeave />
+          </ProtectedRoute>
+        } />
+
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

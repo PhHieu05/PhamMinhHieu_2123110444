@@ -373,55 +373,130 @@ tr:hover td { background-color: rgba(248, 250, 252, 0.9); }
 .login-container { 
   height: 100vh; 
   display: flex; 
-  align-items: center; 
-  justify-content: flex-end; /* Đẩy form sang bên phải */
-  padding-right: 8%; /* Cách viền màn hình bên phải 8% */
+  align-items: flex-end; /* Di chuyển xuống dưới cùng */
+  justify-content: flex-end; /* Đẩy sang bên phải */
+  padding-right: 5%; 
+  padding-bottom: 50px; /* Cách đáy màn hình */
   background-image: url('/school-bg.jpg'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   position: relative;
+  overflow: hidden;
 }
 
 .login-container::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  /* Làm trong suốt hoàn toàn ở bên trái để lộ trường học, chỉ bọc lớp mờ bóng ở bên phải nơi chứa Form */
-  background: linear-gradient(90deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0) 40%, rgba(15, 23, 42, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.2) 50%, rgba(15, 23, 42, 0.7) 100%);
   z-index: 1;
 }
 
 .login-card { 
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(24px); 
-  padding: 48px 40px; 
-  border-radius: 20px; 
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255,255,255,0.5); 
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(20px) saturate(180%); 
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  padding: 50px 45px; 
+  border-radius: 30px; 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); 
   width: 100%; 
-  max-width: 420px; 
+  max-width: 440px; 
   text-align: center; 
-  animation: slideLeft 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: slideLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideLeft {
-  from { opacity: 0; transform: translateX(50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translate(50px, 50px); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+.login-card .logo-icon {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  font-size: 2.5rem;
+  animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .login-card h1 { 
-  font-size: 1.8rem; 
+  font-size: 2rem; 
   font-weight: 800; 
   margin-bottom: 8px; 
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
+  color: #1e293b;
 }
 
-.login-card p {
-  color: var(--text-muted);
+.login-card p.subtitle {
+  color: #64748b;
   font-weight: 500;
-  margin-bottom: 32px;
+  margin-bottom: 35px;
+  font-size: 1rem;
+}
+
+.login-card .input-group label {
+  color: #334155;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.login-card .input-group input {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.login-card .input-group input:focus {
+  background: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1);
+}
+
+.login-card .btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border: none;
+  font-size: 1.1rem;
+  padding: 16px;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+.login-card .btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 30px rgba(99, 102, 241, 0.3);
+}
+
+.login-card .footer-link {
+  margin-top: 35px;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.login-card .footer-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.login-card .footer-link a:hover {
+  border-bottom-color: var(--primary);
 }

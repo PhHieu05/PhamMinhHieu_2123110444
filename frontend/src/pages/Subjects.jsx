@@ -23,8 +23,14 @@ export default function Subjects() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      if (currentSubject.id === 0) await api.post('/Subjects', currentSubject);
-      else await api.put(`/Subjects/${currentSubject.id}`, currentSubject);
+      const payload = {
+        id: currentSubject.id,
+        subjectName: currentSubject.subjectName,
+        credits: parseInt(currentSubject.credits)
+      };
+
+      if (currentSubject.id === 0) await api.post('/Subjects', payload);
+      else await api.put(`/Subjects/${currentSubject.id}`, payload);
       setIsModalOpen(false);
       fetchData();
     } catch (err) { alert('Lỗi hệ thống'); }

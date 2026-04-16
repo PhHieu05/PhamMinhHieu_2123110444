@@ -26,8 +26,17 @@ export default function Grades() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      if (currentGrade.id === 0) await api.post('/Grades', { ...currentGrade, studentId: parseInt(currentGrade.studentId), subjectId: parseInt(currentGrade.subjectId) });
-      else await api.put(`/Grades/${currentGrade.id}`, { ...currentGrade, studentId: parseInt(currentGrade.studentId), subjectId: parseInt(currentGrade.subjectId) });
+      const payload = {
+        id: currentGrade.id,
+        studentId: parseInt(currentGrade.studentId),
+        subjectId: parseInt(currentGrade.subjectId),
+        mark: parseFloat(currentGrade.mark),
+        type: currentGrade.type,
+        semester: parseInt(currentGrade.semester)
+      };
+
+      if (currentGrade.id === 0) await api.post('/Grades', payload);
+      else await api.put(`/Grades/${currentGrade.id}`, payload);
       setIsModalOpen(false);
       fetchData();
     } catch (err) { alert('Lỗi khi lưu điểm'); }

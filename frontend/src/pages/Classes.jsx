@@ -25,8 +25,14 @@ export default function Classes() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      if (currentClass.id === 0) await api.post('/Classes', currentClass);
-      else await api.put(`/Classes/${currentClass.id}`, currentClass);
+      const payload = {
+        id: currentClass.id,
+        className: currentClass.className,
+        schoolYear: currentClass.schoolYear
+      };
+
+      if (currentClass.id === 0) await api.post('/Classes', payload);
+      else await api.put(`/Classes/${currentClass.id}`, payload);
       setIsModalOpen(false);
       fetchData();
     } catch (err) { alert('Lỗi lưu thay đổi'); }

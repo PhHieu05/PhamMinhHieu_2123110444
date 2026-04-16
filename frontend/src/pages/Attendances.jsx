@@ -22,8 +22,16 @@ export default function Attendances() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      if (currentAttendance.id === 0) await api.post('/Attendances', { ...currentAttendance, studentId: parseInt(currentAttendance.studentId) });
-      else await api.put(`/Attendances/${currentAttendance.id}`, { ...currentAttendance, studentId: parseInt(currentAttendance.studentId) });
+      const payload = {
+        id: currentAttendance.id,
+        studentId: parseInt(currentAttendance.studentId),
+        date: currentAttendance.date,
+        status: currentAttendance.status,
+        note: currentAttendance.note
+      };
+
+      if (currentAttendance.id === 0) await api.post('/Attendances', payload);
+      else await api.put(`/Attendances/${currentAttendance.id}`, payload);
       setIsModalOpen(false);
       fetchData();
     } catch (err) { alert('Lỗi khi lưu điểm danh'); }

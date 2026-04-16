@@ -23,6 +23,11 @@ namespace PhamMinhHieu_2123110444.Models
         public string FullName { get; set; } = string.Empty;
 
         [StringLength(20)]
-        public string Role { get; set; } = "Admin";
+        public string Role { get; set; } = "Admin"; // Admin, Student, Parent
+
+        public int? StudentId { get; set; }
+
+        [ForeignKey("StudentId")]
+        public Student? Student { get; set; }
     }
 }

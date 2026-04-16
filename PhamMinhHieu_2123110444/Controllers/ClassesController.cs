@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhamMinhHieu_2123110444.Data;
 using PhamMinhHieu_2123110444.Models;
@@ -39,6 +39,27 @@ namespace PhamMinhHieu_2123110444.Controllers
             _context.Classes.Add(@class);
             await _context.SaveChangesAsync(); // Lệnh lưu xuống DB
             return CreatedAtAction("GetClass", new { id = @class.Id }, @class);
+        }
+
+        // PUT: api/Classes/5 (Cập nhật lớp)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutClass(int id, Class @class)
+        {
+            if (id != @class.Id) return BadRequest();
+
+            _context.Entry(@class).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Classes.Any(e => e.Id == id)) return NotFound();
+                else throw;
+            }
+
+            return NoContent();
         }
 
         // DELETE: api/Classes/5 (Xóa lớp)

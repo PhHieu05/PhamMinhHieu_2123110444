@@ -13,5 +13,8 @@ namespace PhamMinhHieu_2123110444.Data
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<LeaveRequest> LeaveRequests { get; set; }
     }
 }

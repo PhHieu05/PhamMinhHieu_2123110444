@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhamMinhHieu_2123110444.Data;
 using PhamMinhHieu_2123110444.Models;
@@ -39,6 +39,27 @@ namespace PhamMinhHieu_2123110444.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAttendances", new { id = attendance.Id }, attendance);
+        }
+
+        // PUT: api/Attendances/5 (Cập nhật điểm danh)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAttendance(int id, Attendance attendance)
+        {
+            if (id != attendance.Id) return BadRequest();
+
+            _context.Entry(attendance).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Attendances.Any(e => e.Id == id)) return NotFound();
+                else throw;
+            }
+
+            return NoContent();
         }
 
         // GET: api/Attendances/student/5 (Xem lịch sử điểm danh của 1 học sinh)

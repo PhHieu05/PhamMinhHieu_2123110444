@@ -24,22 +24,21 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-        {/* Placeholder for School Logo, you can replace '🏫' with an actual img tag if needed */}
-        <div style={{ fontSize: '3rem', marginBottom: '16px', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }}>🏫</div>
+        <div className="logo-icon">🏫</div>
         
         <h1>Hệ Thống Quản Lý</h1>
-        <p>Trường Quốc Tế GIS - Connect Globally</p>
+        <p className="subtitle">Trường Quốc Tế GIS - Connect Globally</p>
         
-        {error && <div style={{ color: '#ef4444', backgroundColor: '#fef2f2', padding: '10px', borderRadius: '8px', marginBottom: '16px', fontWeight: 600 }}>{error}</div>}
+        {error && <div style={{ color: '#ef4444', backgroundColor: '#fef2f2', padding: '12px', borderRadius: '12px', marginBottom: '20px', fontWeight: 600, fontSize: '0.9rem' }}>{error}</div>}
 
         <form onSubmit={handleLogin} style={{ textAlign: 'left' }}>
           <div className="input-group">
-            <label>Tên đăng nhập</label>
+            <label>Tên đăng nhập hoặc Mã SV</label>
             <input 
               type="text" 
               value={username}
               onChange={e => setUsername(e.target.value)}
-              placeholder="Nhập tên đăng nhập của giáo viên/admin" 
+              placeholder="VD: admin hoặc SV001" 
               required
             />
           </div>
@@ -50,18 +49,18 @@ export default function Login() {
               type="password" 
               value={password}
               onChange={e => setPassword(e.target.value)}
-              placeholder="Nhập mật khẩu an toàn" 
+              placeholder="Mặc định: 123" 
               required
             />
           </div>
           
-          <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: '12px', padding: '14px' }}>
-            Đăng Nhập Quản Trị
+          <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+            Đăng Nhập Hệ Thống
           </button>
         </form>
         
-        <p style={{ marginTop: '28px', color: 'var(--text-muted)' }}>
-          Chưa có tài khoản quản trị? <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 600 }}>Đăng ký ngay</Link>
+        <p className="footer-link">
+          Chưa có tài khoản quản trị? <Link to="/register">Đăng ký ngay</Link>
         </p>
       </div>
     </div>
