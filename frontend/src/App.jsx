@@ -9,11 +9,13 @@ import Grades from './pages/Grades';
 import Attendances from './pages/Attendances';
 import Schedules from './pages/Schedules';
 import AdminLeaveRequests from './pages/AdminLeaveRequests';
+import AdminTuition from './pages/AdminTuition';
 
 // Student Pages
 import StudentSchedule from './pages/StudentSchedule';
 import StudentGrades from './pages/StudentGrades';
 import StudentLeave from './pages/StudentLeave';
+import StudentTuition from './pages/StudentTuition';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -70,6 +72,11 @@ function App() {
             <AdminLeaveRequests />
           </ProtectedRoute>
         } />
+        <Route path="/admin-tuition" element={
+          <ProtectedRoute>
+            <AdminTuition />
+          </ProtectedRoute>
+        } />
 
         {/* Student Routes */}
         <Route path="/schedule" element={
@@ -85,6 +92,11 @@ function App() {
         <Route path="/leave-request" element={
           <ProtectedRoute>
             <StudentLeave />
+          </ProtectedRoute>
+        } />
+        <Route path="/tuition" element={
+          <ProtectedRoute>
+            <StudentTuition />
           </ProtectedRoute>
         } />
 

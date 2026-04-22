@@ -2,7 +2,7 @@ import { useNavigate, Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Users, LogOut, BookOpen,
   GraduationCap, ClipboardList, PenTool,
-  Calendar, Bell, FileText
+  Calendar, Bell, FileText, CreditCard
 } from 'lucide-react';
 
 export default function Layout({ children }) {
@@ -26,6 +26,7 @@ export default function Layout({ children }) {
     { name: 'Duyệt Đơn Nghỉ', path: '/leave-requests', icon: <FileText size={20} /> },
     { name: 'Điểm Số', path: '/grades', icon: <PenTool size={20} /> },
     { name: 'Điểm Danh', path: '/attendances', icon: <ClipboardList size={20} /> },
+    { name: 'Thu Học Phí', path: '/admin-tuition', icon: <CreditCard size={20} /> },
   ];
 
   const studentMenu = [
@@ -34,6 +35,7 @@ export default function Layout({ children }) {
     { name: 'Xem Điểm Số', path: '/my-grades', icon: <PenTool size={20} /> },
     { name: 'Thông Báo', path: '/notifications', icon: <Bell size={20} /> },
     { name: 'Xin Nghỉ Học', path: '/leave-request', icon: <FileText size={20} /> },
+    { name: 'Học Phí', path: '/tuition', icon: <CreditCard size={20} /> },
   ];
 
   const menu = role === 'Admin' ? adminMenu : studentMenu;

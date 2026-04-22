@@ -16,5 +16,6 @@ namespace PhamMinhHieu_2123110444.Data
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
+        public DbSet<TuitionFee> TuitionFees { get; set; }
     }
 }

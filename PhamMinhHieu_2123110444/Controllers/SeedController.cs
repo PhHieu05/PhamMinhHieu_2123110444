@@ -30,6 +30,8 @@ namespace PhamMinhHieu_2123110444.Controllers
                     _context.Subjects.RemoveRange(_context.Subjects);
                     _context.Classes.RemoveRange(_context.Classes);
                     _context.Users.RemoveRange(_context.Users); // Xóa sạch người dùng để tạo mới admin và student
+                    _context.Schedules.RemoveRange(_context.Schedules);
+                    _context.Notifications.RemoveRange(_context.Notifications);
                     await _context.SaveChangesAsync();
                 }
 
@@ -160,7 +162,7 @@ namespace PhamMinhHieu_2123110444.Controllers
                 if (!_context.Notifications.Any())
                 {
                     _context.Notifications.AddRange(
-                        new Notification { Title = "Thông báo nghỉ học kỳ quân sự", Content = "Sinh viên toàn trường được nghỉ từ ngày 20/04 đến hết ngày 30/04...", CreatedAt = DateTime.Now.AddHours(-1), Category = "Holiday" },
+                        new Notification { Title = "Thông báo nghỉ học kỳ lễ 30/4", Content = "Sinh viên toàn trường được nghỉ từ ngày 23/04 đến hết ngày 10/05...", CreatedAt = DateTime.Now.AddHours(-1), Category = "Holiday" },
                         new Notification { Title = "Lịch thi kết thúc học kỳ 2", Content = "Cập nhật lịch thi chính thức cho các môn học đại cương và chuyên ngành...", CreatedAt = DateTime.Now.AddDays(-1), Category = "Exam" }
                     );
                     await _context.SaveChangesAsync();

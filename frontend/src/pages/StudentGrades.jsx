@@ -36,6 +36,30 @@ export default function StudentGrades() {
     fetchGrades();
   }, [user.studentId]);
 
+  const handleDownloadExcel = () => {
+    const headers = ['Môn học', 'Mã HP', 'Tín chỉ', 'Hình thức', 'Điểm số (Hệ 10)', 'Điểm số (Hệ 4)', 'Kết quả'];
+    
+    const rows = grades.map(g => {
+      const subjectName = `"${g.subject?.subjectName || ''}"`;
+      const subjectId = `"${g.subjectId || ''}"`;
+      const credits = g.subject?.credits || 0;
+      const type = `"${g.type || ''}"`;
+      const mark10 = g.mark || 0;
+      const mark4 = (g.mark * 0.4).toFixed(1);
+      const result = g.mark >= 5 ? '"Đã hoàn thành"' : '"Chưa đạt"';
+      return [subjectName, subjectId, credits, type, mark10, mark4, result].join(',');
+    });
+
+    const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + headers.join(',') + "\n" + rows.join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `BangDiem_${user.studentId || 'SV'}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Layout>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
@@ -43,8 +67,8 @@ export default function StudentGrades() {
             <h1 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '8px' }}>🏆 Kết Quả Học Tập</h1>
             <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Bảng điểm chi tiết của sinh viên {user.fullName}</p>
         </div>
-        <button className="btn-primary" style={{ padding: '12px 24px', borderRadius: '14px', background: '#059669' }}>
-            <FileSpreadsheet size={20} /> Tải bảng điểm (.xlsx)
+        <button onClick={handleDownloadExcel} className="btn-primary" style={{ padding: '12px 24px', borderRadius: '14px', background: '#059669', cursor: 'pointer' }}>
+            <FileSpreadsheet size={20} /> Tải bảng điểm (Excel/CSV)
         </button>
       </div>
 

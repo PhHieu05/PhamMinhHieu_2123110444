@@ -373,14 +373,13 @@ tr:hover td { background-color: rgba(248, 250, 252, 0.9); }
 .login-container { 
   height: 100vh; 
   display: flex; 
-  align-items: flex-end; /* Di chuyển xuống dưới cùng */
+  align-items: center; /* Cân bằng form ra giữa theo chiều dọc */
   justify-content: flex-end; /* Đẩy sang bên phải */
-  padding-right: 5%; 
-  padding-bottom: 50px; /* Cách đáy màn hình */
+  padding-right: 8%; 
   background-image: url('/school-bg.jpg'); 
-  background-size: cover;
+  background-size: 100% 100%; /* Ép hình vừa khít toàn màn hình, không bị phóng to quá mức */
   background-position: center;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
 }

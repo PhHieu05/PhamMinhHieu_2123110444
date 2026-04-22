@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Layout from './Layout';
 import api from '../api';
-import { Calendar as CalendarIcon, Clock, MapPin, Download, Share2 } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, MapPin, Download } from 'lucide-react';
 
 export default function StudentSchedule() {
   const [schedule, setSchedule] = useState([]);
@@ -25,6 +25,8 @@ export default function StudentSchedule() {
     fetchSchedule();
   }, [user.classId]);
 
+
+
   return (
     <Layout>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
@@ -33,8 +35,7 @@ export default function StudentSchedule() {
             <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Lịch học theo tuần - Học kỳ 2, Năm học 2023-2024</p>
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
-            <button className="btn-secondary" style={{ padding: '10px 16px', borderRadius: '12px' }}><Download size={18} /> Xuất PDF</button>
-            <button className="btn-secondary" style={{ padding: '10px 16px', borderRadius: '12px' }}><Share2 size={18} /> Chia sẻ</button>
+            <button onClick={() => window.print()} className="btn-secondary" style={{ padding: '10px 16px', borderRadius: '12px', cursor: 'pointer' }}><Download size={18} /> Xuất PDF</button>
         </div>
       </div>
 

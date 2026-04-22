@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhamMinhHieu_2123110444.Data;
 
@@ -11,9 +12,11 @@ using PhamMinhHieu_2123110444.Data;
 namespace PhamMinhHieu_2123110444.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260422145142_AddLeaveRequestsTable")]
+    partial class AddLeaveRequestsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,37 +266,6 @@ namespace PhamMinhHieu_2123110444.Migrations
                     b.ToTable("Subjects");
                 });
 
-            modelBuilder.Entity("PhamMinhHieu_2123110444.Models.TuitionFee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("TotalCredits")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("TuitionFees");
-                });
-
             modelBuilder.Entity("PhamMinhHieu_2123110444.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -401,17 +373,6 @@ namespace PhamMinhHieu_2123110444.Migrations
                         .IsRequired();
 
                     b.Navigation("Class");
-                });
-
-            modelBuilder.Entity("PhamMinhHieu_2123110444.Models.TuitionFee", b =>
-                {
-                    b.HasOne("PhamMinhHieu_2123110444.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("PhamMinhHieu_2123110444.Models.User", b =>
