@@ -4,6 +4,7 @@ import {
   GraduationCap, ClipboardList, PenTool,
   Calendar, Bell, FileText, CreditCard
 } from 'lucide-react';
+import ChatWidget from '../components/ChatWidget';
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ export default function Layout({ children }) {
       <main className="main-content">
         {children}
       </main>
+      <ChatWidget />
     </div>
   );
 }

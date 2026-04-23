@@ -238,7 +238,7 @@ export default function Dashboard() {
                     <div style={{ position: 'relative', zIndex: 2 }}>
                         <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 700 }}>Trung tâm hỗ trợ</h3>
                         <p style={{ opacity: 0.8, fontSize: '0.95rem', marginTop: '12px', lineHeight: '1.6', marginBottom: '24px' }}>Cần trợ giúp về kỹ thuật hay học vụ? Hãy liên hệ với Phòng Đào Tạo ngay.</p>
-                        <button onClick={() => window.location.href = 'mailto:phongdaotao@truong.edu.vn?subject=Yêu cầu hỗ trợ từ sinh viên'} style={{ background: 'white', color: '#0f172a', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform='scale(1.05)'} onMouseLeave={e => e.currentTarget.style.transform='scale(1)'}>
+                        <button onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))} style={{ background: 'white', color: '#0f172a', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform='scale(1.05)'} onMouseLeave={e => e.currentTarget.style.transform='scale(1)'}>
                             Gửi yêu cầu <ArrowRight size={16} />
                         </button>
                     </div>
